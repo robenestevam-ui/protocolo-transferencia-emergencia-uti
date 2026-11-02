@@ -18,7 +18,7 @@
     font-family: "DM Sans", system-ui, sans-serif;
     color: var(--ink); background: var(--bg); line-height: 1.5;
   }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 22px 80px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 22px 80px; }
   .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
   h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.15rem); color: var(--teal-deep); letter-spacing: -.02em; line-height: 1.15; }
   h2 { font-family: Fraunces, Georgia, serif; font-size: 1.28rem; color: var(--teal-deep); margin: 32px 0 10px; }
@@ -36,17 +36,11 @@
   }
   nav.toc a:hover { color: var(--teal-deep); border-color: var(--teal); }
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
-  .step {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
-  }
-  .step .n {
-    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal);
-  }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+  .step .n { font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); }
   .step p { font-size: .86rem; margin-top: 4px; }
   .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
-  }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
   .card.alert { border-color: #e7c4bc; background: #fff8f6; }
   ol.tight, ul.tight { margin: 8px 0 0 1.1rem; font-size: .9rem; }
   ol.tight li, ul.tight li { margin: 0 0 6px; }
@@ -60,7 +54,6 @@
     display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .04em;
     padding: 2px 7px; border-radius: 999px; margin-right: 6px; color: #fff;
   }
-  .prio button p { font-size: .84rem; color: var(--ink); margin-top: 4px; }
   .prio button small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
   .p1 { background: var(--teal); } .p2 { background: #2d6a9f; } .p3 { background: var(--amber); }
   .p4 { background: #5c6b7a; } .p5 { background: var(--p5); }
@@ -68,20 +61,19 @@
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: #f3f6f8; }
   form.ficha {
-    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
-    margin-top: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-top: 8px;
   }
-  .row { display: grid; grid-template-columns: 1.4fr .5fr .7fr; gap: 10px; }
-  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .row { display: grid; grid-template-columns: 1.4fr .45fr .7fr .7fr; gap: 10px; }
+  .row-3, .row-4 { display: grid; gap: 10px; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-4 { grid-template-columns: repeat(4, 1fr); }
   label.f { display: flex; flex-direction: column; gap: 4px; font-size: .78rem; font-weight: 600; color: var(--muted); }
   input[type="text"], input[type="number"], textarea, select {
     font: inherit; color: var(--ink); border: 1px solid #d5dee6; border-radius: 8px;
     padding: 8px 10px; background: #fff; font-weight: 500;
   }
   textarea { min-height: 72px; resize: vertical; }
-  fieldset {
-    border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 12px 0 0;
-  }
+  fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 12px 0 0; }
   legend { font-weight: 700; font-size: .88rem; padding: 0 6px; }
   .checks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
   .checks label, .yn label {
@@ -91,31 +83,54 @@
   .yn { display: flex; gap: 8px; margin: 6px 0 10px; }
   .q { font-size: .9rem; margin-top: 8px; }
   .hint { font-size: .8rem; color: var(--muted); margin-top: 6px; }
-  .result {
-    margin-top: 14px; border-radius: 12px; padding: 14px; background: #f3f6f8; border: 1px solid var(--line);
+  .painel {
+    background: #fff; border: 1px solid #c9ddd9; border-radius: 16px; padding: 16px 16px 14px;
+    margin-top: 14px; box-shadow: 0 8px 24px rgba(6, 95, 95, .06);
   }
+  .painel-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .painel h3 { font-family: Fraunces, Georgia, serif; font-size: 1.35rem; color: var(--teal-deep); line-height: 1.2; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .badge {
+    font-size: .75rem; font-weight: 700; border-radius: 999px; padding: 4px 9px; color: #fff; background: #5c6b7a;
+  }
+  .badge.p1 { background: var(--teal); } .badge.p2 { background: #2d6a9f; } .badge.p3 { background: var(--amber); }
+  .badge.p5, .badge.mori { background: var(--p5); } .badge.ok { background: var(--ok); }
+  .pv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .pv-grid div, .gestor-box {
+    background: #f6faf9; border-radius: 10px; padding: 8px 10px;
+  }
+  .pv-grid span, .gestor-box span, .vital span {
+    display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
+  }
+  .pv-grid strong, .pv-grid p, .gestor-box strong { font-size: .9rem; font-weight: 600; white-space: pre-wrap; }
+  .span2 { grid-column: 1 / -1; }
+  .vitais { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+  .vital { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+  .vital b { display: block; font-size: 1rem; color: var(--ink); }
+  .gestor-box { margin-top: 8px; background: #eef6f5; border: 1px solid #c9ddd9; }
+  .result { margin-top: 14px; border-radius: 12px; padding: 14px; background: #f3f6f8; border: 1px solid var(--line); }
   .result.moribundo { background: #fdf3f1; border-color: #e7c4bc; }
   .result.ok { background: #f2f8f4; border-color: #cfe3d6; }
   .result h3 { font-family: Fraunces, Georgia, serif; font-size: 1.05rem; color: var(--teal-deep); }
-  .fala {
-    margin-top: 8px; font-size: .92rem; background: #fff; border-radius: 10px; padding: 10px 12px;
-    border: 1px dashed #c9d4de;
-  }
+  .fala { margin-top: 8px; font-size: .92rem; background: #fff; border-radius: 10px; padding: 10px 12px; border: 1px dashed #c9d4de; }
   .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  button.btn {
-    font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer;
-  }
+  button.btn { font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; }
   button.primary { background: var(--teal-deep); color: #fff; }
   button.ghost { background: #fff; color: var(--teal-deep); border: 1px solid var(--line); }
   .warn { color: var(--p5); font-size: .84rem; font-weight: 600; margin-top: 6px; }
+  .copyok { font-size: .82rem; color: var(--ok); font-weight: 700; margin-top: 6px; }
   footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
   @media (max-width: 800px) {
-    .steps, .grid-2, .row, .row-3 { grid-template-columns: 1fr; }
+    .steps, .grid-2, .row, .row-3, .row-4, .vitais, .pv-grid { grid-template-columns: 1fr 1fr; }
+    .row, .row-3 { grid-template-columns: 1fr; }
+    .painel-top { flex-direction: column; }
+    .badges { justify-content: flex-start; }
   }
   @media print {
     body { background: #fff; }
     nav.toc, .actions, .noprint { display: none !important; }
     .wrap { padding: 0; max-width: none; }
+    .painel { box-shadow: none; break-inside: avoid; }
     form.ficha, .card, .step { break-inside: avoid; }
   }
 </style>
@@ -124,8 +139,8 @@
 <div class="wrap">
   <div class="eyebrow">Complexo Hospitalar Padre Bento · minuta para validação</div>
   <h1>Transferência da Emergência para a UTI</h1>
-  <p class="sub">A emergência sinaliza duas coisas antes de pedir vaga: se o paciente é moribundo e em qual prioridade ele está. O intensivista confirma a prioridade e define o destino. Base: Resolução CFM nº 2.156/2016.</p>
-  <div class="banner"><strong>Minuta operacional.</strong> Entra em vigor depois da validação das coordenações da Emergência e da UTI e da diretoria clínica. Até lá, serve para treinar o plantão e testar a ficha.</div>
+  <p class="sub">A emergência descreve o paciente por inteiro, marca se ele é moribundo e propõe a prioridade. O gestor de leitos vê esse quadro completo e analisa a vaga. A prioridade clínica segue a Resolução CFM nº 2.156/2016.</p>
+  <div class="banner"><strong>Minuta operacional.</strong> Entra em vigor depois da validação das coordenações da Emergência e da UTI, do gestor de leitos e da diretoria clínica.</div>
 
   <nav class="toc">
     <a href="#uso">Como usar</a>
@@ -137,18 +152,18 @@
 
   <h2 id="uso">Como o plantão usa</h2>
   <div class="steps">
-    <div class="step"><div class="n">1</div><p>O médico da emergência responde o crivo do moribundo.</p></div>
-    <div class="step"><div class="n">2</div><p>Marca a prioridade de 1 a 5 e escreve a justificativa.</p></div>
-    <div class="step"><div class="n">3</div><p>Lê a passagem gerada para o intensivista de plantão.</p></div>
-    <div class="step"><div class="n">4</div><p>O intensivista confirma ou reclassifica e indica o destino.</p></div>
+    <div class="step"><div class="n">1</div><p>O médico da emergência preenche o quadro e responde o crivo do moribundo.</p></div>
+    <div class="step"><div class="n">2</div><p>Marca a prioridade de 1 a 5. A visão do paciente se monta sozinha.</p></div>
+    <div class="step"><div class="n">3</div><p>Envia o link deste paciente ao gestor de leitos.</p></div>
+    <div class="step"><div class="n">4</div><p>O gestor de leitos analisa a vaga e registra destino e leito.</p></div>
   </div>
-  <p class="hint">Sem prioridade marcada e sem resposta sobre moribundo, a solicitação ainda não está pronta. A vaga continua sendo decisão do intensivista.</p>
+  <p class="hint">Sem prioridade marcada e sem resposta sobre moribundo, a solicitação ainda não está pronta. Quem analisa a vaga é o gestor de leitos.</p>
 
   <h2 id="moribundo">Quem é o paciente moribundo</h2>
   <div class="grid-2">
     <div class="card alert">
       <h3>Definição para a emergência</h3>
-      <p>Moribundo é quem já está na fase ativa da morte. O óbito é esperado em horas, no máximo em poucos dias, e o suporte intensivo não muda esse curso.</p>
+      <p>Moribundo é quem já está na fase ativa da morte. O óbito é esperado em horas, no máximo em poucos dias, e o suporte intensivo não muda esse curso. Estar intubado não muda essa classificação.</p>
       <p style="margin-top:8px">As três respostas precisam ser sim:</p>
       <ol class="tight">
         <li>Doença irreversível, ou falência de órgãos, sem causa que a emergência ainda possa reverter nesta hora.</li>
@@ -162,11 +177,11 @@
       <ul class="tight">
         <li>Classificar como <strong>Prioridade 5</strong>.</li>
         <li>Meta do cuidado: conforto, controle de dor, dispneia e agitação, família ao lado.</li>
-        <li>Destino preferencial: permanência com plano de conforto, enfermaria ou unidade de cuidados paliativos.</li>
-        <li>UTI somente em exceção, como potencial doador de órgãos, a critério do intensivista.</li>
+        <li>Se já estiver intubado, registrar isso na visão do paciente e não escalar o suporte.</li>
+        <li>O gestor de leitos vê o quadro e define o destino. UTI só em exceção, como potencial doador.</li>
         <li>Registrar no prontuário o crivo, a prioridade e o que foi dito à família.</li>
       </ul>
-      <p class="hint">Paliativo exclusivo é outro grupo: a meta já é conforto, e a pessoa pode viver dias ou semanas. Moribundo é quem está morrendo agora. Os dois entram separados no relatório da UTI.</p>
+      <p class="hint">Paliativo exclusivo é outro grupo: a meta já é conforto, e a pessoa pode viver dias ou semanas. Moribundo é quem está morrendo agora.</p>
     </div>
   </div>
 
@@ -177,48 +192,89 @@
     </div>
     <div class="card">
       <h3>Exemplo de paciente grave, com indicação de UTI</h3>
-      <p>DPOC com insuficiência respiratória, ainda candidato a ventilação e sem sinais de fase ativa de morte. Há chance de recuperação e não há limite terapêutico. Prioridade 1. Destino: UTI.</p>
+      <p>DPOC com insuficiência respiratória, ainda candidato a ventilação e sem sinais de fase ativa de morte. Há chance de recuperação e não há limite terapêutico. Prioridade 1. O gestor de leitos analisa a vaga de UTI.</p>
     </div>
   </div>
 
   <h2 id="prioridades">As cinco prioridades</h2>
   <p class="hint noprint">Clique num cartão para levar a prioridade à ficha.</p>
   <div class="prio" style="margin-top:8px">
-    <button type="button" data-go="1"><span class="tag p1">Prioridade 1</span> Suporte de vida agora, com chance real de recuperação e sem limite terapêutico.<small>Destino: UTI. Exemplos: intubação, droga vasoativa, pós-parada instável, via aérea insegura.</small></button>
-    <button type="button" data-go="2"><span class="tag p2">Prioridade 2</span> Ainda sem suporte de vida, com risco alto de precisar de intervenção imediata, sem limite terapêutico.<small>Destino preferencial: semi-intensiva. UTI se não houver esse leito ou se o risco for imediato, a critério do intensivista.</small></button>
-    <button type="button" data-go="3"><span class="tag p3">Prioridade 3</span> Já precisa de suporte de vida, com baixa chance de recuperação ou com limite terapêutico definido.<small>Destino: UTI, com o limite escrito (por exemplo, não intubar ou não reanimar).</small></button>
-    <button type="button" data-go="4"><span class="tag p4">Prioridade 4</span> Precisa de vigilância pelo risco de piora e já tem limite terapêutico.<small>Destino preferencial: semi-intensiva.</small></button>
-    <button type="button" data-go="5"><span class="tag p5">Prioridade 5</span> Terminalidade ou moribundo, sem possibilidade de recuperação.<small>Destino preferencial: cuidados paliativos. UTI só em exceção, a critério do intensivista.</small></button>
+    <button type="button" data-go="1"><span class="tag p1">Prioridade 1</span> Suporte de vida agora, com chance real de recuperação e sem limite terapêutico.<small>Pedido de vaga: UTI. Exemplos: intubação, droga vasoativa, pós-parada instável, via aérea insegura.</small></button>
+    <button type="button" data-go="2"><span class="tag p2">Prioridade 2</span> Ainda sem suporte de vida, com risco alto de precisar de intervenção imediata, sem limite terapêutico.<small>Pedido preferencial: semi-intensiva. UTI se não houver esse leito ou se o risco for imediato.</small></button>
+    <button type="button" data-go="3"><span class="tag p3">Prioridade 3</span> Já precisa de suporte de vida, com baixa chance de recuperação ou com limite terapêutico definido.<small>Pedido: UTI, com o limite escrito (por exemplo, não reanimar).</small></button>
+    <button type="button" data-go="4"><span class="tag p4">Prioridade 4</span> Precisa de vigilância pelo risco de piora e já tem limite terapêutico.<small>Pedido preferencial: semi-intensiva.</small></button>
+    <button type="button" data-go="5"><span class="tag p5">Prioridade 5</span> Terminalidade ou moribundo, sem possibilidade de recuperação.<small>Pedido: cuidados de conforto. UTI só em exceção, como potencial doador.</small></button>
   </div>
 
   <h2 id="fluxo">Quem decide o quê</h2>
   <table>
-    <thead><tr><th>Momento</th><th>Emergência</th><th>Intensivista</th></tr></thead>
+    <thead><tr><th>Momento</th><th>Emergência</th><th>Gestor de leitos</th></tr></thead>
     <tbody>
-      <tr><td>Crivo</td><td>Responde se é moribundo e marca a prioridade.</td><td>Pode reclassificar com o caso na frente.</td></tr>
-      <tr><td>Registro</td><td>Justifica a solicitação no prontuário e informa a família.</td><td>Registra a prioridade final e o destino.</td></tr>
-      <tr><td>Leito</td><td>Mantém o suporte possível enquanto aguarda.</td><td>Define UTI, semi-intensiva, permanência no PS ou paliativo.</td></tr>
-      <tr><td>Prioridade 2 e 4</td><td>Sinaliza vigilância, e o limite quando houver.</td><td>Encaminha de preferência à semi-intensiva.</td></tr>
-      <tr><td>Prioridade 5</td><td>Inicia conforto e chama a família.</td><td>Concorda com o plano ou justifica exceção de UTI.</td></tr>
+      <tr><td>Quadro</td><td>Descreve o paciente inteiro: diagnóstico, comorbidades, suporte, vitais e limites.</td><td>Lê a visão do paciente antes de procurar vaga.</td></tr>
+      <tr><td>Crivo</td><td>Responde se é moribundo e propõe a prioridade.</td><td>Usa essa prioridade na análise da vaga.</td></tr>
+      <tr><td>Leito</td><td>Mantém o suporte possível enquanto aguarda.</td><td>Define UTI I, II ou III, semi-intensiva, fila, permanência no PS ou conforto.</td></tr>
+      <tr><td>Prioridade 5</td><td>Inicia conforto e chama a família. Se já intubou, registra e não escala.</td><td>Destino de conforto. Vaga de UTI só na exceção registrada.</td></tr>
     </tbody>
   </table>
   <p class="hint">Idade isolada não classifica prioridade. O que conta é a necessidade, a chance de benefício e o limite terapêutico.</p>
 
-  <h2 id="ficha">Ficha de sinalização</h2>
-  <p class="sub">Preencha no plantão. A frase final é a passagem de caso para o intensivista. Imprima ou copie para o prontuário.</p>
+  <h2 id="ficha">Ficha e visão do paciente</h2>
+  <p class="sub">O quadro de cima mostra o paciente inteiro e muda enquanto a ficha é preenchida. O link deste paciente abre a mesma visão para o gestor de leitos.</p>
+
+  <section class="painel" id="painel" aria-live="polite">
+    <div class="painel-top">
+      <div>
+        <div class="eyebrow">Visão do paciente</div>
+        <h3 id="pvNome">Paciente ainda sem nome</h3>
+        <p class="hint" id="pvMetaLinha">Prontuário, box e horário aparecem aqui.</p>
+      </div>
+      <div class="badges" id="pvBadges"></div>
+    </div>
+    <div class="pv-grid">
+      <div><span>Diagnóstico</span><strong id="pvDx">—</strong></div>
+      <div><span>Comorbidades</span><strong id="pvComo">—</strong></div>
+      <div class="span2"><span>Quadro clínico</span><p id="pvQuadro">—</p></div>
+    </div>
+    <div class="vitais" id="pvVitais"></div>
+    <div class="pv-grid">
+      <div><span>Via aérea</span><strong id="pvVia">—</strong></div>
+      <div><span>Suporte agora</span><strong id="pvSup">—</strong></div>
+      <div><span>Droga em curso</span><strong id="pvDroga">—</strong></div>
+      <div><span>Disfunções</span><strong id="pvDisf">—</strong></div>
+      <div><span>Limites</span><strong id="pvLim">—</strong></div>
+      <div><span>Isolamento</span><strong id="pvIso">—</strong></div>
+      <div><span>Moribundo</span><strong id="pvMori">Crivo em aberto</strong></div>
+      <div><span>Família</span><strong id="pvFam">—</strong></div>
+      <div class="span2"><span>Justificativa da emergência</span><p id="pvJust">—</p></div>
+    </div>
+    <div class="gestor-box">
+      <span>Análise da vaga · gestor de leitos</span>
+      <strong id="pvGestor">Aguardando análise da vaga</strong>
+    </div>
+  </section>
 
   <form class="ficha" id="formulario">
     <div class="row">
       <label class="f">Paciente<input type="text" id="nome" placeholder="Nome" /></label>
       <label class="f">Idade<input type="number" id="idade" min="0" max="130" /></label>
+      <label class="f">Sexo
+        <select id="sexo">
+          <option value="">—</option>
+          <option>Feminino</option>
+          <option>Masculino</option>
+        </select>
+      </label>
       <label class="f">Prontuário<input type="text" id="prontuario" /></label>
     </div>
-    <div class="row-3" style="margin-top:10px">
+    <div class="row-4" style="margin-top:10px">
+      <label class="f">Box ou local no PS<input type="text" id="box" placeholder="Ex.: sala vermelha 2" /></label>
+      <label class="f">Tempo no PS<input type="text" id="tempoPs" placeholder="Ex.: 6 h" /></label>
       <label class="f">Médico solicitante<input type="text" id="medico" /></label>
-      <label class="f">CRM<input type="text" id="crm" /></label>
       <label class="f">Data e hora<input type="text" id="quando" /></label>
     </div>
     <label class="f" style="margin-top:10px">Diagnóstico em uma linha<input type="text" id="dx" placeholder="Ex.: sepse de foco pulmonar com hipotensão" /></label>
+    <label class="f" style="margin-top:10px">Comorbidades<input type="text" id="comorb" placeholder="Ex.: DPOC, diabetes, doença renal crônica" /></label>
+    <label class="f" style="margin-top:10px">Quadro clínico<textarea id="quadro" placeholder="O que aconteceu, desde quando, o que já foi feito na emergência e como o paciente está agora"></textarea></label>
 
     <fieldset>
       <legend>1. Crivo de moribundo</legend>
@@ -232,7 +288,7 @@
         <label><input type="radio" name="q2" value="sim" /> Sim</label>
         <label><input type="radio" name="q2" value="nao" /> Não</label>
       </div>
-      <p class="q">Sinais da fase ativa de morte (marque os presentes; moribundo exige dois ou mais):</p>
+      <p class="q">Sinais da fase ativa de morte (moribundo exige dois ou mais):</p>
       <div class="checks">
         <label><input type="checkbox" name="sinal" value="Consciência muito rebaixada" /> Consciência muito rebaixada</label>
         <label><input type="checkbox" name="sinal" value="Parou de deglutir" /> Parou de deglutir</label>
@@ -257,44 +313,87 @@
         <label><input type="radio" name="prio" value="5" /> 5 · Terminalidade ou moribundo</label>
       </div>
       <div class="checks">
-        <label><input type="checkbox" id="doador" /> Possível doador de órgãos (exceção de UTI, decidida pelo intensivista)</label>
+        <label><input type="checkbox" id="doador" /> Possível doador de órgãos (exceção de vaga de UTI)</label>
       </div>
-      <p class="warn" id="lockMsg" hidden>Crivo de moribundo completo. A prioridade fica em 5. A exceção de doador não abre a vaga sozinha: o intensivista decide.</p>
+      <p class="warn" id="lockMsg" hidden>Crivo de moribundo completo. A prioridade fica em 5. A exceção de doador não abre a vaga sozinha: o gestor de leitos analisa.</p>
     </fieldset>
 
     <fieldset>
-      <legend>3. O que o paciente precisa agora</legend>
+      <legend>3. Como o paciente está agora</legend>
+      <p class="q">Via aérea</p>
       <div class="checks">
-        <label><input type="checkbox" name="sup" value="via aérea / intubação" /> Via aérea ou intubação</label>
-        <label><input type="checkbox" name="sup" value="ventilação mecânica" /> Ventilação mecânica</label>
+        <label><input type="radio" name="via" value="Ar ambiente" /> Ar ambiente</label>
+        <label><input type="radio" name="via" value="Oxigênio" /> Oxigênio</label>
+        <label><input type="radio" name="via" value="Ventilação não invasiva" /> Ventilação não invasiva</label>
+        <label><input type="radio" name="via" value="Intubado na emergência" /> Intubado na emergência</label>
+        <label><input type="radio" name="via" value="Ventilação mecânica" /> Ventilação mecânica</label>
+      </div>
+      <div class="checks">
         <label><input type="checkbox" name="sup" value="droga vasoativa" /> Droga vasoativa</label>
+        <label><input type="checkbox" name="sup" value="sedação" /> Sedação</label>
         <label><input type="checkbox" name="sup" value="pós-parada" /> Pós-parada</label>
         <label><input type="checkbox" name="sup" value="monitorização contínua" /> Monitorização contínua</label>
-        <label><input type="checkbox" name="sup" value="controle de sintoma / conforto" /> Conforto</label>
+        <label><input type="checkbox" name="sup" value="conforto" /> Conforto</label>
+      </div>
+      <label class="f" style="margin-top:10px">Droga em curso<input type="text" id="droga" placeholder="Ex.: noradrenalina 0,3 mcg/kg/min" /></label>
+      <p class="q">Disfunções</p>
+      <div class="checks">
+        <label><input type="checkbox" name="disf" value="Respiratória" /> Respiratória</label>
+        <label><input type="checkbox" name="disf" value="Hemodinâmica" /> Hemodinâmica</label>
+        <label><input type="checkbox" name="disf" value="Neurológica" /> Neurológica</label>
+        <label><input type="checkbox" name="disf" value="Renal" /> Renal</label>
+        <label><input type="checkbox" name="disf" value="Metabólica" /> Metabólica</label>
+      </div>
+      <div class="row-4" style="margin-top:10px">
+        <label class="f">PA<input type="text" id="pa" placeholder="90x60" /></label>
+        <label class="f">FC<input type="text" id="fc" placeholder="120" /></label>
+        <label class="f">FR<input type="text" id="fr" placeholder="28" /></label>
+        <label class="f">SpO2<input type="text" id="spo2" placeholder="91%" /></label>
+      </div>
+      <div class="row-4" style="margin-top:10px">
+        <label class="f">Glasgow<input type="text" id="glasgow" placeholder="8" /></label>
+        <label class="f">Temperatura<input type="text" id="temp" placeholder="38,2" /></label>
+        <label class="f">Lactato<input type="text" id="lactato" placeholder="4,1" /></label>
+        <label class="f">Diurese<input type="text" id="diurese" placeholder="oligúria" /></label>
+      </div>
+      <p class="q">Limites já definidos</p>
+      <div class="checks">
+        <label><input type="checkbox" name="limite" value="Não reanimar" /> Não reanimar</label>
+        <label><input type="checkbox" name="limite" value="Não escalar suporte" /> Não escalar suporte</label>
+        <label><input type="checkbox" name="limite" value="Não intubar" /> Não intubar</label>
       </div>
       <div class="row-3" style="margin-top:10px">
-        <label class="f">PA<input type="text" id="pa" placeholder="90x60" /></label>
-        <label class="f">FC / FR<input type="text" id="fcfr" placeholder="120 / 28" /></label>
-        <label class="f">SpO2 e Glasgow<input type="text" id="spo2" placeholder="91% em O2 · G 8" /></label>
+        <label class="f">Isolamento
+          <select id="isolamento">
+            <option value="">Nenhum</option>
+            <option>Contato</option>
+            <option>Gotículas</option>
+            <option>Aerossóis</option>
+          </select>
+        </label>
+        <label class="f">Meta terapêutica
+          <select id="metaSel">
+            <option value="">A definir</option>
+            <option value="plena">Plena</option>
+            <option value="limitada">Com limite</option>
+            <option value="conforto">Conforto</option>
+          </select>
+        </label>
+        <label class="f">Família informada
+          <select id="familiaSel">
+            <option value="">—</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Ainda não</option>
+          </select>
+        </label>
       </div>
-      <p class="q">Meta terapêutica</p>
-      <div class="checks">
-        <label><input type="radio" name="meta" value="plena" /> Plena</label>
-        <label><input type="radio" name="meta" value="limitada" /> Com limite</label>
-        <label><input type="radio" name="meta" value="conforto" /> Conforto</label>
-      </div>
-      <p class="q">Família ou responsável informado</p>
-      <div class="yn">
-        <label><input type="radio" name="familia" value="sim" /> Sim</label>
-        <label><input type="radio" name="familia" value="nao" /> Ainda não</label>
-      </div>
-      <label class="f">Justificativa em uma frase<textarea id="just" placeholder="Por que este paciente precisa desta prioridade agora"></textarea></label>
+      <label class="f" style="margin-top:10px">Justificativa em uma frase<textarea id="just" placeholder="Por que este paciente precisa desta prioridade agora"></textarea></label>
     </fieldset>
 
     <fieldset>
-      <legend>4. Resposta do intensivista</legend>
+      <legend>4. Análise da vaga pelo gestor de leitos</legend>
       <div class="row-3">
-        <label class="f">Prioridade final
+        <label class="f">Prioridade usada na análise
           <select id="prioFinal">
             <option value="">Aguardando</option>
             <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
@@ -303,13 +402,20 @@
         <label class="f">Destino
           <select id="destino">
             <option value="">Aguardando</option>
-            <option>UTI</option>
+            <option>UTI I</option>
+            <option>UTI II</option>
+            <option>UTI III</option>
             <option>Semi-intensiva</option>
+            <option>Fila de vaga</option>
             <option>Permanecer no PS com plano</option>
             <option>Cuidados paliativos / conforto</option>
           </select>
         </label>
-        <label class="f">Intensivista<input type="text" id="intensivista" /></label>
+        <label class="f">Leito<input type="text" id="leito" placeholder="Ex.: UTI II leito 4" /></label>
+      </div>
+      <div class="row-3" style="margin-top:10px">
+        <label class="f">Gestor de leitos<input type="text" id="gestor" /></label>
+        <label class="f" style="grid-column: span 2">Observação da análise<input type="text" id="obsGestor" placeholder="Ex.: sem vaga de UTI II agora; fila com prioridade 1" /></label>
       </div>
     </fieldset>
 
@@ -319,91 +425,167 @@
       <div class="fala" id="fala" hidden></div>
     </div>
     <div class="actions">
-      <button class="btn primary" type="button" id="gerar">Gerar passagem de caso</button>
-      <button class="btn ghost" type="button" id="imprimir">Imprimir ficha</button>
+      <button class="btn primary" type="button" id="gerar">Atualizar visão</button>
+      <button class="btn primary" type="button" id="copiar">Copiar link deste paciente</button>
+      <button class="btn ghost" type="button" id="imprimir">Imprimir</button>
       <button class="btn ghost" type="button" id="limpar">Limpar</button>
     </div>
+    <p class="copyok" id="copyok" hidden>Link copiado. Ele abre esta mesma visão do paciente.</p>
+    <p class="hint">O link leva nome e quadro clínico. Envie só ao gestor de leitos.</p>
   </form>
 
   <h2>O que fica no prontuário</h2>
   <ul class="tight">
-    <li>Resultado do crivo de moribundo e as causas reversíveis afastadas.</li>
-    <li>Prioridade proposta pela emergência e prioridade final do intensivista.</li>
-    <li>Meta terapêutica e destino.</li>
-    <li>Que a família ou o responsável foi informado da admissão, da alta ou do plano de conforto.</li>
+    <li>Quadro clínico, suporte, vitais e resultado do crivo de moribundo.</li>
+    <li>Prioridade proposta pela emergência e destino definido pelo gestor de leitos.</li>
+    <li>Meta terapêutica, limites e o que foi dito à família.</li>
   </ul>
 
   <footer>
-    Minuta 0.1 · novembro de 2026 · Complexo Hospitalar Padre Bento. Critérios de admissão e priorização conforme a Resolução CFM nº 2.156/2016 (arts. 1º a 8º). A admissão e a alta da UTI são do médico intensivista. A solicitação é justificada e registrada pelo médico da emergência. Esta página é instrumento de trabalho para validação local; a coordenação ajusta telefone do plantão, nome da semi-intensiva e o campo do prontuário eletrônico antes de publicar.
+    Minuta 0.2 · novembro de 2026 · Complexo Hospitalar Padre Bento. Prioridades conforme a Resolução CFM nº 2.156/2016. No fluxo desta minuta, a emergência propõe a prioridade e o gestor de leitos analisa a vaga. Ajuste telefone, nomes das unidades e o campo do prontuário antes de publicar como protocolo oficial.
   </footer>
 </div>
 <script>
 (function () {
+  const LINK_BASE = "https://raw.githack.com/robenestevam-ui/protocolo-transferencia-emergencia-uti/main/index.html";
   const form = document.getElementById("formulario");
   const fala = document.getElementById("fala");
   const result = document.getElementById("result");
   const lockMsg = document.getElementById("lockMsg");
   const crivoStatus = document.getElementById("crivoStatus");
+  const TEXTOS = ["nome", "idade", "sexo", "prontuario", "box", "tempoPs", "medico", "quando", "dx", "comorb", "quadro", "droga", "pa", "fc", "fr", "spo2", "glasgow", "temp", "lactato", "diurese", "isolamento", "metaSel", "familiaSel", "just", "prioFinal", "destino", "leito", "gestor", "obsGestor"];
+  const GRUPOS = ["q1", "q2", "sinal", "via", "sup", "disf", "limite", "prio"];
   const destinos = {
     "1": "UTI",
-    "2": "Semi-intensiva; UTI se não houver esse leito ou se o risco for imediato",
+    "2": "Semi-intensiva, ou UTI se o risco for imediato",
     "3": "UTI com limite terapêutico registrado",
     "4": "Semi-intensiva",
-    "5": "Cuidados de conforto. UTI só em exceção, a critério do intensivista"
+    "5": "Cuidados de conforto. UTI só em exceção"
   };
 
-  function val(id) { return document.getElementById(id).value.trim(); }
-  function checked(name) { return form.querySelector('input[name="' + name + '"]:checked'); }
-  function signs() {
-    return [...form.querySelectorAll('input[name="sinal"]:checked')].map(function (el) { return el.value; });
+  function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
   }
-  function suporte() {
-    return [...form.querySelectorAll('input[name="sup"]:checked')].map(function (el) { return el.value; });
+  function checked(name) {
+    return form.querySelector('input[name="' + name + '"]:checked');
+  }
+  function lista(name) {
+    return [...form.querySelectorAll('input[name="' + name + '"]:checked')].map(function (el) { return el.value; });
+  }
+  function ou(texto) { return texto || "—"; }
+  function esc(texto) {
+    return String(texto || "").replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c];
+    });
   }
 
   function crivo() {
     const q1 = checked("q1");
     const q2 = checked("q2");
-    const n = signs().length;
+    const n = lista("sinal").length;
     const rev = document.getElementById("reversiveis").checked;
     const q1sim = q1 && q1.value === "sim";
     const q2sim = q2 && q2.value === "sim";
     const moribundo = Boolean(q1sim && q2sim && n >= 2 && rev);
     let texto = "Responda as duas perguntas, marque os sinais e confirme as causas reversíveis.";
     if (q1 && q2) {
-      if (!q1sim || !q2sim) {
-        texto = "Fora da fase ativa de morte. Escolha a prioridade pela necessidade de suporte e pela chance de recuperação.";
-      } else if (n < 2) {
-        texto = "As duas primeiras respostas estão sim. Falta marcar pelo menos dois sinais da fase ativa de morte.";
-      } else if (!rev) {
-        texto = "Sinais presentes. Confirme que as causas reversíveis imediatas foram afastadas antes de classificar como moribundo.";
-      } else {
-        texto = "Crivo completo: paciente moribundo. Prioridade 5. Meta de conforto.";
-      }
+      if (!q1sim || !q2sim) texto = "Fora da fase ativa de morte. Escolha a prioridade pela necessidade de suporte e pela chance de recuperação.";
+      else if (n < 2) texto = "As duas primeiras respostas estão sim. Falta marcar pelo menos dois sinais da fase ativa de morte.";
+      else if (!rev) texto = "Sinais presentes. Confirme que as causas reversíveis imediatas foram afastadas antes de classificar como moribundo.";
+      else texto = "Crivo completo: paciente moribundo. Prioridade 5. Meta de conforto.";
     }
-    return { moribundo: moribundo, texto: texto, n: n };
+    return { moribundo: moribundo, texto: texto };
   }
 
   function aplicarTrava() {
     const c = crivo();
-    const doador = document.getElementById("doador").checked;
     crivoStatus.textContent = c.texto;
-    const radios = [...form.querySelectorAll('input[name="prio"]')];
-    radios.forEach(function (r) {
+    form.querySelectorAll('input[name="prio"]').forEach(function (r) {
       r.disabled = c.moribundo && r.value !== "5";
     });
     lockMsg.hidden = !c.moribundo;
     if (c.moribundo) {
       const p5 = form.querySelector('input[name="prio"][value="5"]');
       p5.checked = true;
-      const meta = form.querySelector('input[name="meta"][value="conforto"]');
-      if (meta) meta.checked = true;
+      document.getElementById("metaSel").value = "conforto";
     }
+    return c;
+  }
+
+  function vitaisHtml() {
+    const itens = [
+      ["PA", val("pa")], ["FC", val("fc")], ["FR", val("fr")], ["SpO2", val("spo2")],
+      ["Glasgow", val("glasgow")], ["Temp.", val("temp")], ["Lactato", val("lactato")], ["Diurese", val("diurese")]
+    ];
+    return itens.map(function (par) {
+      return "<div class=\"vital\"><span>" + par[0] + "</span><b>" + esc(par[1] || "—") + "</b></div>";
+    }).join("");
+  }
+
+  function atualizarPainel() {
+    const c = crivo();
+    const p = checked("prio");
+    const nome = val("nome");
+    const idade = val("idade");
+    const sexo = val("sexo");
+    const quem = [nome || "Paciente ainda sem nome", idade && (idade + " anos"), sexo].filter(Boolean).join(" · ");
+    document.getElementById("pvNome").textContent = quem;
+    const linha = [
+      val("prontuario") && ("Prontuário " + val("prontuario")),
+      val("box"),
+      val("tempoPs") && ("PS há " + val("tempoPs")),
+      val("quando"),
+      val("medico") && ("Dr(a). " + val("medico"))
+    ].filter(Boolean);
+    document.getElementById("pvMetaLinha").textContent = linha.join(" · ") || "Prontuário, box e horário aparecem aqui.";
+    const badges = document.getElementById("pvBadges");
+    badges.innerHTML = "";
+    function addBadge(texto, classe) {
+      const s = document.createElement("span");
+      s.className = "badge " + (classe || "");
+      s.textContent = texto;
+      badges.appendChild(s);
+    }
+    if (p) addBadge("Prioridade " + p.value, "p" + p.value);
+    else addBadge("Sem prioridade");
+    if (c.moribundo) addBadge("Moribundo", "mori");
+    const via = checked("via");
+    if (via) addBadge(via.value, via.value.indexOf("Intub") === 0 || via.value.indexOf("Ventilação mec") === 0 ? "p3" : "ok");
+    const meta = val("metaSel");
+    if (meta) addBadge(meta === "plena" ? "Meta plena" : meta === "limitada" ? "Meta com limite" : "Meta conforto");
+    document.getElementById("pvDx").textContent = ou(val("dx"));
+    document.getElementById("pvComo").textContent = ou(val("comorb"));
+    document.getElementById("pvQuadro").textContent = ou(val("quadro"));
+    document.getElementById("pvVitais").innerHTML = vitaisHtml();
+    document.getElementById("pvVia").textContent = ou(via && via.value);
+    document.getElementById("pvSup").textContent = ou(lista("sup").join(", "));
+    document.getElementById("pvDroga").textContent = ou(val("droga"));
+    document.getElementById("pvDisf").textContent = ou(lista("disf").join(", "));
+    const limites = lista("limite");
+    if (document.getElementById("doador").checked) limites.push("Possível doador");
+    document.getElementById("pvLim").textContent = ou(limites.join(", "));
+    document.getElementById("pvIso").textContent = ou(val("isolamento"));
+    document.getElementById("pvMori").textContent = c.moribundo ? "Sim. Fase ativa de morte. " + lista("sinal").join(", ") + "." : c.texto;
+    const fam = val("familiaSel");
+    document.getElementById("pvFam").textContent = fam === "sim" ? "Informada" : fam === "nao" ? "Ainda não" : "—";
+    document.getElementById("pvJust").textContent = ou(val("just"));
+    const dest = val("destino");
+    const gestor = val("gestor");
+    const partes = [
+      dest && ("Destino: " + dest),
+      val("leito") && ("Leito: " + val("leito")),
+      val("prioFinal") && ("Prioridade na análise: " + val("prioFinal")),
+      gestor && ("Gestor: " + gestor),
+      val("obsGestor")
+    ].filter(Boolean);
+    document.getElementById("pvGestor").textContent = partes.join(" · ") || "Aguardando análise da vaga";
     return c;
   }
 
   function montar() {
     const c = aplicarTrava();
+    atualizarPainel();
     const p = checked("prio");
     const just = val("just");
     const faltas = [];
@@ -421,66 +603,120 @@
     }
     const nome = val("nome") || "paciente sem nome na ficha";
     const idade = val("idade");
-    const quem = idade ? nome + ", " + idade + " anos" : nome;
+    const quem = [nome, idade && (idade + " anos"), val("sexo")].filter(Boolean).join(", ");
     const dx = val("dx") || "diagnóstico a registrar";
-    const sup = suporte();
-    const meta = checked("meta");
-    const metaTxt = meta ? meta.value : "a definir";
-    const fam = checked("familia");
-    const sinais = signs();
+    const via = checked("via");
     let frase;
     if (c.moribundo) {
-      frase = "Paciente moribundo, Prioridade 5. " + quem + ". Diagnóstico: " + dx + ". Sinais: " + (sinais.join(", ") || "não listados") + ". Causas reversíveis imediatas afastadas. Meta: conforto. Peço concordância do plano e destino fora da UTI";
-      frase += document.getElementById("doador").checked ? ", com avaliação de possível doação de órgãos." : ".";
+      frase = "Paciente moribundo, Prioridade 5. " + quem + ". Diagnóstico: " + dx + ".";
+      if (via) frase += " Via aérea: " + via.value + ".";
+      frase += " Sinais: " + (lista("sinal").join(", ") || "não listados") + ". Causas reversíveis imediatas afastadas. Meta: conforto. Solicito análise da vaga ao gestor de leitos para destino de conforto";
+      frase += document.getElementById("doador").checked ? ", com registro de possível doação de órgãos." : ".";
     } else {
-      frase = "Solicito avaliação para transferência. " + quem + ". Diagnóstico: " + dx + ". Moribundo: não. Prioridade " + p.value + ": " + destinos[p.value] + ".";
-      if (sup.length) frase += " Necessidade: " + sup.join(", ") + ".";
-      frase += " Meta terapêutica: " + metaTxt + ".";
+      frase = "Solicito análise de vaga. " + quem + ". Diagnóstico: " + dx + ". Moribundo: não. Prioridade " + p.value + ": " + destinos[p.value] + ".";
+      if (via) frase += " Via aérea: " + via.value + ".";
+      if (lista("sup").length) frase += " Suporte: " + lista("sup").join(", ") + ".";
+      if (val("metaSel")) frase += " Meta: " + val("metaSel") + ".";
     }
+    if (val("quadro")) frase += " Quadro: " + val("quadro").replace(/\s+/g, " ") + ".";
     frase += " Justificativa: " + just.replace(/[. ]+$/, "") + ".";
-    const vitais = [val("pa") && ("PA " + val("pa")), val("fcfr") && ("FC/FR " + val("fcfr")), val("spo2") && val("spo2")].filter(Boolean);
+    const vitais = [val("pa") && ("PA " + val("pa")), val("fc") && ("FC " + val("fc")), val("fr") && ("FR " + val("fr")), val("spo2") && ("SpO2 " + val("spo2")), val("glasgow") && ("Glasgow " + val("glasgow"))].filter(Boolean);
     if (vitais.length) frase += " Vitais: " + vitais.join(" · ") + ".";
-    if (fam) frase += fam.value === "sim" ? " Família informada." : " Família ainda não informada.";
-    const pf = val("prioFinal");
-    const dest = val("destino");
-    const inten = val("intensivista");
-    if (pf || dest || inten) {
-      frase += " Resposta do intensivista: prioridade " + (pf || "a confirmar") + ", destino " + (dest || "a confirmar");
-      if (inten) frase += ", " + inten;
+    if (val("familiaSel") === "sim") frase += " Família informada.";
+    if (val("familiaSel") === "nao") frase += " Família ainda não informada.";
+    if (val("destino") || val("gestor")) {
+      frase += " Análise do gestor de leitos: " + (val("destino") || "destino a confirmar");
+      if (val("leito")) frase += ", " + val("leito");
+      if (val("gestor")) frase += ", " + val("gestor");
       frase += ".";
     }
     result.className = c.moribundo ? "result moribundo" : "result ok";
     titulo.textContent = c.moribundo ? "Moribundo · Prioridade 5" : "Prioridade " + p.value + " · " + destinos[p.value];
-    hint.textContent = "Leia esta frase ao intensivista e registre no prontuário.";
+    hint.textContent = "Esta frase vai ao gestor de leitos junto com a visão do paciente.";
     fala.hidden = false;
     fala.textContent = frase;
+    document.getElementById("painel").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  form.addEventListener("change", aplicarTrava);
+  function estado() {
+    const dados = { rev: document.getElementById("reversiveis").checked, doador: document.getElementById("doador").checked, grupos: {} };
+    TEXTOS.forEach(function (id) { dados[id] = val(id); });
+    GRUPOS.forEach(function (nome) { dados.grupos[nome] = lista(nome); });
+    return dados;
+  }
+
+  function aplicarEstado(dados) {
+    if (!dados) return;
+    TEXTOS.forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el && dados[id] != null) el.value = dados[id];
+    });
+    document.getElementById("reversiveis").checked = Boolean(dados.rev);
+    document.getElementById("doador").checked = Boolean(dados.doador);
+    const grupos = dados.grupos || {};
+    Object.keys(grupos).forEach(function (nome) {
+      const valores = grupos[nome] || [];
+      form.querySelectorAll('input[name="' + nome + '"]').forEach(function (el) {
+        el.checked = valores.indexOf(el.value) !== -1;
+      });
+    });
+    aplicarTrava();
+    atualizarPainel();
+  }
+
+  function linkDoPaciente() {
+    const json = JSON.stringify(estado());
+    return LINK_BASE + "#p=" + encodeURIComponent(json);
+  }
+
+  form.addEventListener("input", function () { aplicarTrava(); atualizarPainel(); });
+  form.addEventListener("change", function () { aplicarTrava(); atualizarPainel(); });
   document.getElementById("gerar").addEventListener("click", montar);
   document.getElementById("imprimir").addEventListener("click", function () { montar(); window.print(); });
+  document.getElementById("copiar").addEventListener("click", function () {
+    montar();
+    const link = linkDoPaciente();
+    const ok = document.getElementById("copyok");
+    function mostrar() { ok.hidden = false; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(mostrar).catch(function () { window.prompt("Copie o link deste paciente:", link); mostrar(); });
+    } else {
+      window.prompt("Copie o link deste paciente:", link);
+      mostrar();
+    }
+  });
   document.getElementById("limpar").addEventListener("click", function () {
     form.reset();
     fala.hidden = true;
+    document.getElementById("copyok").hidden = true;
     result.className = "result";
     document.getElementById("resultTitle").textContent = "Passagem ainda incompleta";
     document.getElementById("resultHint").textContent = "Preencha o crivo, a prioridade e a justificativa.";
+    history.replaceState(null, "", location.pathname + location.search);
     aplicarTrava();
+    atualizarPainel();
   });
   document.querySelectorAll("[data-go]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       const v = btn.getAttribute("data-go");
       const radio = form.querySelector('input[name="prio"][value="' + v + '"]');
       if (radio && !radio.disabled) radio.checked = true;
-      document.getElementById("formulario").scrollIntoView({ behavior: "smooth", block: "start" });
       aplicarTrava();
+      atualizarPainel();
+      document.getElementById("formulario").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
   const agora = new Date();
   const pad = function (n) { return String(n).padStart(2, "0"); };
   document.getElementById("quando").value = pad(agora.getDate()) + "/" + pad(agora.getMonth() + 1) + "/" + agora.getFullYear() + " " + pad(agora.getHours()) + ":" + pad(agora.getMinutes());
-  aplicarTrava();
+  const hash = location.hash.indexOf("#p=") === 0 ? location.hash.slice(3) : "";
+  if (hash) {
+    try { aplicarEstado(JSON.parse(decodeURIComponent(hash))); } catch (e) { aplicarTrava(); atualizarPainel(); }
+  } else {
+    aplicarTrava();
+    atualizarPainel();
+  }
 })();
 </script>
 </body>
