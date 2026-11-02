@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Protocolo de transferência Emergência → UTI · Padre Bento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a2332; --muted: #5a6a7a; --line: #e4e9ef; --bg: #f7f9fb;
+    --teal: #0d7c7c; --teal-deep: #065f5f; --coral: #c45c3e; --ok: #2a7a4b;
+    --amber: #c4892a; --card: #fff; --p5: #8c2f2f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.5;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 22px 80px; }
+  .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.15rem); color: var(--teal-deep); letter-spacing: -.02em; line-height: 1.15; }
+  h2 { font-family: Fraunces, Georgia, serif; font-size: 1.28rem; color: var(--teal-deep); margin: 32px 0 10px; }
+  h3 { font-size: .95rem; margin: 0 0 6px; }
+  .sub { margin-top: 10px; color: var(--muted); max-width: 72ch; }
+  .banner {
+    margin-top: 16px; background: #fff8ef; border: 1px solid #f0ddc2; border-radius: 12px;
+    padding: 12px 14px; font-size: .88rem;
+  }
+  .banner strong { color: #8a4b28; }
+  nav.toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 4px; }
+  nav.toc a {
+    font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--muted);
+    padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff;
+  }
+  nav.toc a:hover { color: var(--teal-deep); border-color: var(--teal); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .step {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+  }
+  .step .n {
+    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal);
+  }
+  .step p { font-size: .86rem; margin-top: 4px; }
+  .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+  }
+  .card.alert { border-color: #e7c4bc; background: #fff8f6; }
+  ol.tight, ul.tight { margin: 8px 0 0 1.1rem; font-size: .9rem; }
+  ol.tight li, ul.tight li { margin: 0 0 6px; }
+  .prio { display: flex; flex-direction: column; gap: 8px; }
+  .prio button {
+    text-align: left; width: 100%; font: inherit; cursor: pointer;
+    border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 12px;
+  }
+  .prio button:hover { border-color: var(--teal); }
+  .prio button .tag {
+    display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+    padding: 2px 7px; border-radius: 999px; margin-right: 6px; color: #fff;
+  }
+  .prio button p { font-size: .84rem; color: var(--ink); margin-top: 4px; }
+  .prio button small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+  .p1 { background: var(--teal); } .p2 { background: #2d6a9f; } .p3 { background: var(--amber); }
+  .p4 { background: #5c6b7a; } .p5 { background: var(--p5); }
+  table { width: 100%; border-collapse: collapse; background: var(--card); font-size: .86rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: #f3f6f8; }
+  form.ficha {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
+    margin-top: 8px;
+  }
+  .row { display: grid; grid-template-columns: 1.4fr .5fr .7fr; gap: 10px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  label.f { display: flex; flex-direction: column; gap: 4px; font-size: .78rem; font-weight: 600; color: var(--muted); }
+  input[type="text"], input[type="number"], textarea, select {
+    font: inherit; color: var(--ink); border: 1px solid #d5dee6; border-radius: 8px;
+    padding: 8px 10px; background: #fff; font-weight: 500;
+  }
+  textarea { min-height: 72px; resize: vertical; }
+  fieldset {
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 12px 0 0;
+  }
+  legend { font-weight: 700; font-size: .88rem; padding: 0 6px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .checks label, .yn label {
+    font-size: .84rem; font-weight: 500; color: var(--ink);
+    background: #f4f7f8; border-radius: 8px; padding: 6px 8px;
+  }
+  .yn { display: flex; gap: 8px; margin: 6px 0 10px; }
+  .q { font-size: .9rem; margin-top: 8px; }
+  .hint { font-size: .8rem; color: var(--muted); margin-top: 6px; }
+  .result {
+    margin-top: 14px; border-radius: 12px; padding: 14px; background: #f3f6f8; border: 1px solid var(--line);
+  }
+  .result.moribundo { background: #fdf3f1; border-color: #e7c4bc; }
+  .result.ok { background: #f2f8f4; border-color: #cfe3d6; }
+  .result h3 { font-family: Fraunces, Georgia, serif; font-size: 1.05rem; color: var(--teal-deep); }
+  .fala {
+    margin-top: 8px; font-size: .92rem; background: #fff; border-radius: 10px; padding: 10px 12px;
+    border: 1px dashed #c9d4de;
+  }
+  .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  button.btn {
+    font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  }
+  button.primary { background: var(--teal-deep); color: #fff; }
+  button.ghost { background: #fff; color: var(--teal-deep); border: 1px solid var(--line); }
+  .warn { color: var(--p5); font-size: .84rem; font-weight: 600; margin-top: 6px; }
+  footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
+  @media (max-width: 800px) {
+    .steps, .grid-2, .row, .row-3 { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    nav.toc, .actions, .noprint { display: none !important; }
+    .wrap { padding: 0; max-width: none; }
+    form.ficha, .card, .step { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Complexo Hospitalar Padre Bento · minuta para validação</div>
+  <h1>Transferência da Emergência para a UTI</h1>
+  <p class="sub">A emergência sinaliza duas coisas antes de pedir vaga: se o paciente é moribundo e em qual prioridade ele está. O intensivista confirma a prioridade e define o destino. Base: Resolução CFM nº 2.156/2016.</p>
+  <div class="banner"><strong>Minuta operacional.</strong> Entra em vigor depois da validação das coordenações da Emergência e da UTI e da diretoria clínica. Até lá, serve para treinar o plantão e testar a ficha.</div>
+
+  <nav class="toc">
+    <a href="#uso">Como usar</a>
+    <a href="#moribundo">Moribundo</a>
+    <a href="#prioridades">Prioridades</a>
+    <a href="#fluxo">Fluxo</a>
+    <a href="#ficha">Ficha do plantão</a>
+  </nav>
+
+  <h2 id="uso">Como o plantão usa</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><p>O médico da emergência responde o crivo do moribundo.</p></div>
+    <div class="step"><div class="n">2</div><p>Marca a prioridade de 1 a 5 e escreve a justificativa.</p></div>
+    <div class="step"><div class="n">3</div><p>Lê a passagem gerada para o intensivista de plantão.</p></div>
+    <div class="step"><div class="n">4</div><p>O intensivista confirma ou reclassifica e indica o destino.</p></div>
+  </div>
+  <p class="hint">Sem prioridade marcada e sem resposta sobre moribundo, a solicitação ainda não está pronta. A vaga continua sendo decisão do intensivista.</p>
+
+  <h2 id="moribundo">Quem é o paciente moribundo</h2>
+  <div class="grid-2">
+    <div class="card alert">
+      <h3>Definição para a emergência</h3>
+      <p>Moribundo é quem já está na fase ativa da morte. O óbito é esperado em horas, no máximo em poucos dias, e o suporte intensivo não muda esse curso.</p>
+      <p style="margin-top:8px">As três respostas precisam ser sim:</p>
+      <ol class="tight">
+        <li>Doença irreversível, ou falência de órgãos, sem causa que a emergência ainda possa reverter nesta hora.</li>
+        <li>Morte esperada em horas ou em poucos dias.</li>
+        <li>Pelo menos dois sinais: consciência muito rebaixada; parou de deglutir; respiração irregular, com pausas ou agônica; pele fria e moteada; pulso fino com hipotensão; anúria.</li>
+      </ol>
+      <p style="margin-top:8px">Antes do sim, afastar: hipoglicemia, efeito de opioide ou sedativo, anafilaxia, pneumotórax hipertensivo, tamponamento, hipotermia, choque hemorrágico controlável e arritmia reversível.</p>
+    </div>
+    <div class="card">
+      <h3>O que fazer quando for moribundo</h3>
+      <ul class="tight">
+        <li>Classificar como <strong>Prioridade 5</strong>.</li>
+        <li>Meta do cuidado: conforto, controle de dor, dispneia e agitação, família ao lado.</li>
+        <li>Destino preferencial: permanência com plano de conforto, enfermaria ou unidade de cuidados paliativos.</li>
+        <li>UTI somente em exceção, como potencial doador de órgãos, a critério do intensivista.</li>
+        <li>Registrar no prontuário o crivo, a prioridade e o que foi dito à família.</li>
+      </ul>
+      <p class="hint">Paliativo exclusivo é outro grupo: a meta já é conforto, e a pessoa pode viver dias ou semanas. Moribundo é quem está morrendo agora. Os dois entram separados no relatório da UTI.</p>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:12px">
+    <div class="card">
+      <h3>Exemplo de moribundo</h3>
+      <p>Doença oncológica metastática, sem proposta curativa, chega ao PS sem deglutir, com pausas respiratórias e pele moteada. A família já conhece a terminalidade. Causas reversíveis afastadas. Prioridade 5. Plano de conforto.</p>
+    </div>
+    <div class="card">
+      <h3>Exemplo de paciente grave, com indicação de UTI</h3>
+      <p>DPOC com insuficiência respiratória, ainda candidato a ventilação e sem sinais de fase ativa de morte. Há chance de recuperação e não há limite terapêutico. Prioridade 1. Destino: UTI.</p>
+    </div>
+  </div>
+
+  <h2 id="prioridades">As cinco prioridades</h2>
+  <p class="hint noprint">Clique num cartão para levar a prioridade à ficha.</p>
+  <div class="prio" style="margin-top:8px">
+    <button type="button" data-go="1"><span class="tag p1">Prioridade 1</span> Suporte de vida agora, com chance real de recuperação e sem limite terapêutico.<small>Destino: UTI. Exemplos: intubação, droga vasoativa, pós-parada instável, via aérea insegura.</small></button>
+    <button type="button" data-go="2"><span class="tag p2">Prioridade 2</span> Ainda sem suporte de vida, com risco alto de precisar de intervenção imediata, sem limite terapêutico.<small>Destino preferencial: semi-intensiva. UTI se não houver esse leito ou se o risco for imediato, a critério do intensivista.</small></button>
+    <button type="button" data-go="3"><span class="tag p3">Prioridade 3</span> Já precisa de suporte de vida, com baixa chance de recuperação ou com limite terapêutico definido.<small>Destino: UTI, com o limite escrito (por exemplo, não intubar ou não reanimar).</small></button>
+    <button type="button" data-go="4"><span class="tag p4">Prioridade 4</span> Precisa de vigilância pelo risco de piora e já tem limite terapêutico.<small>Destino preferencial: semi-intensiva.</small></button>
+    <button type="button" data-go="5"><span class="tag p5">Prioridade 5</span> Terminalidade ou moribundo, sem possibilidade de recuperação.<small>Destino preferencial: cuidados paliativos. UTI só em exceção, a critério do intensivista.</small></button>
+  </div>
+
+  <h2 id="fluxo">Quem decide o quê</h2>
+  <table>
+    <thead><tr><th>Momento</th><th>Emergência</th><th>Intensivista</th></tr></thead>
+    <tbody>
+      <tr><td>Crivo</td><td>Responde se é moribundo e marca a prioridade.</td><td>Pode reclassificar com o caso na frente.</td></tr>
+      <tr><td>Registro</td><td>Justifica a solicitação no prontuário e informa a família.</td><td>Registra a prioridade final e o destino.</td></tr>
+      <tr><td>Leito</td><td>Mantém o suporte possível enquanto aguarda.</td><td>Define UTI, semi-intensiva, permanência no PS ou paliativo.</td></tr>
+      <tr><td>Prioridade 2 e 4</td><td>Sinaliza vigilância, e o limite quando houver.</td><td>Encaminha de preferência à semi-intensiva.</td></tr>
+      <tr><td>Prioridade 5</td><td>Inicia conforto e chama a família.</td><td>Concorda com o plano ou justifica exceção de UTI.</td></tr>
+    </tbody>
+  </table>
+  <p class="hint">Idade isolada não classifica prioridade. O que conta é a necessidade, a chance de benefício e o limite terapêutico.</p>
+
+  <h2 id="ficha">Ficha de sinalização</h2>
+  <p class="sub">Preencha no plantão. A frase final é a passagem de caso para o intensivista. Imprima ou copie para o prontuário.</p>
+
+  <form class="ficha" id="formulario">
+    <div class="row">
+      <label class="f">Paciente<input type="text" id="nome" placeholder="Nome" /></label>
+      <label class="f">Idade<input type="number" id="idade" min="0" max="130" /></label>
+      <label class="f">Prontuário<input type="text" id="prontuario" /></label>
+    </div>
+    <div class="row-3" style="margin-top:10px">
+      <label class="f">Médico solicitante<input type="text" id="medico" /></label>
+      <label class="f">CRM<input type="text" id="crm" /></label>
+      <label class="f">Data e hora<input type="text" id="quando" /></label>
+    </div>
+    <label class="f" style="margin-top:10px">Diagnóstico em uma linha<input type="text" id="dx" placeholder="Ex.: sepse de foco pulmonar com hipotensão" /></label>
+
+    <fieldset>
+      <legend>1. Crivo de moribundo</legend>
+      <p class="q">Há doença irreversível ou falência sem causa que você ainda possa reverter agora?</p>
+      <div class="yn">
+        <label><input type="radio" name="q1" value="sim" /> Sim</label>
+        <label><input type="radio" name="q1" value="nao" /> Não</label>
+      </div>
+      <p class="q">A morte é esperada em horas ou em poucos dias?</p>
+      <div class="yn">
+        <label><input type="radio" name="q2" value="sim" /> Sim</label>
+        <label><input type="radio" name="q2" value="nao" /> Não</label>
+      </div>
+      <p class="q">Sinais da fase ativa de morte (marque os presentes; moribundo exige dois ou mais):</p>
+      <div class="checks">
+        <label><input type="checkbox" name="sinal" value="Consciência muito rebaixada" /> Consciência muito rebaixada</label>
+        <label><input type="checkbox" name="sinal" value="Parou de deglutir" /> Parou de deglutir</label>
+        <label><input type="checkbox" name="sinal" value="Respiração irregular ou agônica" /> Respiração irregular ou agônica</label>
+        <label><input type="checkbox" name="sinal" value="Pele fria e moteada" /> Pele fria e moteada</label>
+        <label><input type="checkbox" name="sinal" value="Pulso fino e hipotensão" /> Pulso fino e hipotensão</label>
+        <label><input type="checkbox" name="sinal" value="Anúria" /> Anúria</label>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="reversiveis" /> Causas reversíveis imediatas foram afastadas</label>
+      </div>
+      <p class="hint" id="crivoStatus">Responda as duas perguntas, marque os sinais e confirme as causas reversíveis.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Prioridade proposta pela emergência</legend>
+      <div class="checks" id="prioBox">
+        <label><input type="radio" name="prio" value="1" /> 1 · UTI, suporte pleno</label>
+        <label><input type="radio" name="prio" value="2" /> 2 · Vigilância, sem limite</label>
+        <label><input type="radio" name="prio" value="3" /> 3 · Suporte com limite ou baixa chance</label>
+        <label><input type="radio" name="prio" value="4" /> 4 · Vigilância com limite</label>
+        <label><input type="radio" name="prio" value="5" /> 5 · Terminalidade ou moribundo</label>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="doador" /> Possível doador de órgãos (exceção de UTI, decidida pelo intensivista)</label>
+      </div>
+      <p class="warn" id="lockMsg" hidden>Crivo de moribundo completo. A prioridade fica em 5. A exceção de doador não abre a vaga sozinha: o intensivista decide.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. O que o paciente precisa agora</legend>
+      <div class="checks">
+        <label><input type="checkbox" name="sup" value="via aérea / intubação" /> Via aérea ou intubação</label>
+        <label><input type="checkbox" name="sup" value="ventilação mecânica" /> Ventilação mecânica</label>
+        <label><input type="checkbox" name="sup" value="droga vasoativa" /> Droga vasoativa</label>
+        <label><input type="checkbox" name="sup" value="pós-parada" /> Pós-parada</label>
+        <label><input type="checkbox" name="sup" value="monitorização contínua" /> Monitorização contínua</label>
+        <label><input type="checkbox" name="sup" value="controle de sintoma / conforto" /> Conforto</label>
+      </div>
+      <div class="row-3" style="margin-top:10px">
+        <label class="f">PA<input type="text" id="pa" placeholder="90x60" /></label>
+        <label class="f">FC / FR<input type="text" id="fcfr" placeholder="120 / 28" /></label>
+        <label class="f">SpO2 e Glasgow<input type="text" id="spo2" placeholder="91% em O2 · G 8" /></label>
+      </div>
+      <p class="q">Meta terapêutica</p>
+      <div class="checks">
+        <label><input type="radio" name="meta" value="plena" /> Plena</label>
+        <label><input type="radio" name="meta" value="limitada" /> Com limite</label>
+        <label><input type="radio" name="meta" value="conforto" /> Conforto</label>
+      </div>
+      <p class="q">Família ou responsável informado</p>
+      <div class="yn">
+        <label><input type="radio" name="familia" value="sim" /> Sim</label>
+        <label><input type="radio" name="familia" value="nao" /> Ainda não</label>
+      </div>
+      <label class="f">Justificativa em uma frase<textarea id="just" placeholder="Por que este paciente precisa desta prioridade agora"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. Resposta do intensivista</legend>
+      <div class="row-3">
+        <label class="f">Prioridade final
+          <select id="prioFinal">
+            <option value="">Aguardando</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          </select>
+        </label>
+        <label class="f">Destino
+          <select id="destino">
+            <option value="">Aguardando</option>
+            <option>UTI</option>
+            <option>Semi-intensiva</option>
+            <option>Permanecer no PS com plano</option>
+            <option>Cuidados paliativos / conforto</option>
+          </select>
+        </label>
+        <label class="f">Intensivista<input type="text" id="intensivista" /></label>
+      </div>
+    </fieldset>
+
+    <div class="result" id="result">
+      <h3 id="resultTitle">Passagem ainda incompleta</h3>
+      <p class="hint" id="resultHint">Preencha o crivo, a prioridade e a justificativa.</p>
+      <div class="fala" id="fala" hidden></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" type="button" id="gerar">Gerar passagem de caso</button>
+      <button class="btn ghost" type="button" id="imprimir">Imprimir ficha</button>
+      <button class="btn ghost" type="button" id="limpar">Limpar</button>
+    </div>
+  </form>
+
+  <h2>O que fica no prontuário</h2>
+  <ul class="tight">
+    <li>Resultado do crivo de moribundo e as causas reversíveis afastadas.</li>
+    <li>Prioridade proposta pela emergência e prioridade final do intensivista.</li>
+    <li>Meta terapêutica e destino.</li>
+    <li>Que a família ou o responsável foi informado da admissão, da alta ou do plano de conforto.</li>
+  </ul>
+
+  <footer>
+    Minuta 0.1 · novembro de 2026 · Complexo Hospitalar Padre Bento. Critérios de admissão e priorização conforme a Resolução CFM nº 2.156/2016 (arts. 1º a 8º). A admissão e a alta da UTI são do médico intensivista. A solicitação é justificada e registrada pelo médico da emergência. Esta página é instrumento de trabalho para validação local; a coordenação ajusta telefone do plantão, nome da semi-intensiva e o campo do prontuário eletrônico antes de publicar.
+  </footer>
+</div>
+<script>
+(function () {
+  const form = document.getElementById("formulario");
+  const fala = document.getElementById("fala");
+  const result = document.getElementById("result");
+  const lockMsg = document.getElementById("lockMsg");
+  const crivoStatus = document.getElementById("crivoStatus");
+  const destinos = {
+    "1": "UTI",
+    "2": "Semi-intensiva; UTI se não houver esse leito ou se o risco for imediato",
+    "3": "UTI com limite terapêutico registrado",
+    "4": "Semi-intensiva",
+    "5": "Cuidados de conforto. UTI só em exceção, a critério do intensivista"
+  };
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function checked(name) { return form.querySelector('input[name="' + name + '"]:checked'); }
+  function signs() {
+    return [...form.querySelectorAll('input[name="sinal"]:checked')].map(function (el) { return el.value; });
+  }
+  function suporte() {
+    return [...form.querySelectorAll('input[name="sup"]:checked')].map(function (el) { return el.value; });
+  }
+
+  function crivo() {
+    const q1 = checked("q1");
+    const q2 = checked("q2");
+    const n = signs().length;
+    const rev = document.getElementById("reversiveis").checked;
+    const q1sim = q1 && q1.value === "sim";
+    const q2sim = q2 && q2.value === "sim";
+    const moribundo = Boolean(q1sim && q2sim && n >= 2 && rev);
+    let texto = "Responda as duas perguntas, marque os sinais e confirme as causas reversíveis.";
+    if (q1 && q2) {
+      if (!q1sim || !q2sim) {
+        texto = "Fora da fase ativa de morte. Escolha a prioridade pela necessidade de suporte e pela chance de recuperação.";
+      } else if (n < 2) {
+        texto = "As duas primeiras respostas estão sim. Falta marcar pelo menos dois sinais da fase ativa de morte.";
+      } else if (!rev) {
+        texto = "Sinais presentes. Confirme que as causas reversíveis imediatas foram afastadas antes de classificar como moribundo.";
+      } else {
+        texto = "Crivo completo: paciente moribundo. Prioridade 5. Meta de conforto.";
+      }
+    }
+    return { moribundo: moribundo, texto: texto, n: n };
+  }
+
+  function aplicarTrava() {
+    const c = crivo();
+    const doador = document.getElementById("doador").checked;
+    crivoStatus.textContent = c.texto;
+    const radios = [...form.querySelectorAll('input[name="prio"]')];
+    radios.forEach(function (r) {
+      r.disabled = c.moribundo && r.value !== "5";
+    });
+    lockMsg.hidden = !c.moribundo;
+    if (c.moribundo) {
+      const p5 = form.querySelector('input[name="prio"][value="5"]');
+      p5.checked = true;
+      const meta = form.querySelector('input[name="meta"][value="conforto"]');
+      if (meta) meta.checked = true;
+    }
+    return c;
+  }
+
+  function montar() {
+    const c = aplicarTrava();
+    const p = checked("prio");
+    const just = val("just");
+    const faltas = [];
+    if (!checked("q1") || !checked("q2")) faltas.push("crivo de moribundo");
+    if (!p) faltas.push("prioridade");
+    if (!just) faltas.push("justificativa");
+    const titulo = document.getElementById("resultTitle");
+    const hint = document.getElementById("resultHint");
+    if (faltas.length) {
+      result.className = "result";
+      titulo.textContent = "Passagem ainda incompleta";
+      hint.textContent = "Falta: " + faltas.join(", ") + ".";
+      fala.hidden = true;
+      return;
+    }
+    const nome = val("nome") || "paciente sem nome na ficha";
+    const idade = val("idade");
+    const quem = idade ? nome + ", " + idade + " anos" : nome;
+    const dx = val("dx") || "diagnóstico a registrar";
+    const sup = suporte();
+    const meta = checked("meta");
+    const metaTxt = meta ? meta.value : "a definir";
+    const fam = checked("familia");
+    const sinais = signs();
+    let frase;
+    if (c.moribundo) {
+      frase = "Paciente moribundo, Prioridade 5. " + quem + ". Diagnóstico: " + dx + ". Sinais: " + (sinais.join(", ") || "não listados") + ". Causas reversíveis imediatas afastadas. Meta: conforto. Peço concordância do plano e destino fora da UTI";
+      frase += document.getElementById("doador").checked ? ", com avaliação de possível doação de órgãos." : ".";
+    } else {
+      frase = "Solicito avaliação para transferência. " + quem + ". Diagnóstico: " + dx + ". Moribundo: não. Prioridade " + p.value + ": " + destinos[p.value] + ".";
+      if (sup.length) frase += " Necessidade: " + sup.join(", ") + ".";
+      frase += " Meta terapêutica: " + metaTxt + ".";
+    }
+    frase += " Justificativa: " + just.replace(/[. ]+$/, "") + ".";
+    const vitais = [val("pa") && ("PA " + val("pa")), val("fcfr") && ("FC/FR " + val("fcfr")), val("spo2") && val("spo2")].filter(Boolean);
+    if (vitais.length) frase += " Vitais: " + vitais.join(" · ") + ".";
+    if (fam) frase += fam.value === "sim" ? " Família informada." : " Família ainda não informada.";
+    const pf = val("prioFinal");
+    const dest = val("destino");
+    const inten = val("intensivista");
+    if (pf || dest || inten) {
+      frase += " Resposta do intensivista: prioridade " + (pf || "a confirmar") + ", destino " + (dest || "a confirmar");
+      if (inten) frase += ", " + inten;
+      frase += ".";
+    }
+    result.className = c.moribundo ? "result moribundo" : "result ok";
+    titulo.textContent = c.moribundo ? "Moribundo · Prioridade 5" : "Prioridade " + p.value + " · " + destinos[p.value];
+    hint.textContent = "Leia esta frase ao intensivista e registre no prontuário.";
+    fala.hidden = false;
+    fala.textContent = frase;
+  }
+
+  form.addEventListener("change", aplicarTrava);
+  document.getElementById("gerar").addEventListener("click", montar);
+  document.getElementById("imprimir").addEventListener("click", function () { montar(); window.print(); });
+  document.getElementById("limpar").addEventListener("click", function () {
+    form.reset();
+    fala.hidden = true;
+    result.className = "result";
+    document.getElementById("resultTitle").textContent = "Passagem ainda incompleta";
+    document.getElementById("resultHint").textContent = "Preencha o crivo, a prioridade e a justificativa.";
+    aplicarTrava();
+  });
+  document.querySelectorAll("[data-go]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const v = btn.getAttribute("data-go");
+      const radio = form.querySelector('input[name="prio"][value="' + v + '"]');
+      if (radio && !radio.disabled) radio.checked = true;
+      document.getElementById("formulario").scrollIntoView({ behavior: "smooth", block: "start" });
+      aplicarTrava();
+    });
+  });
+
+  const agora = new Date();
+  const pad = function (n) { return String(n).padStart(2, "0"); };
+  document.getElementById("quando").value = pad(agora.getDate()) + "/" + pad(agora.getMonth() + 1) + "/" + agora.getFullYear() + " " + pad(agora.getHours()) + ":" + pad(agora.getMinutes());
+  aplicarTrava();
+})();
+</script>
+</body>
+</html>
